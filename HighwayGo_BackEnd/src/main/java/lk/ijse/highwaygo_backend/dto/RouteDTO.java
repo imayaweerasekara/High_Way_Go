@@ -1,30 +1,16 @@
-package lk.ijse.highwaygo_backend.entity;
+package lk.ijse.highwaygo_backend.dto;
 
-import jakarta.persistence.*;
 import lombok.*;
-
-@Entity
-@Table(name = "routes")
 
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class Route {
+public class RouteDTO {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
-
-    @Column(nullable = false)
     private String startLocation;
-
-    @Column(nullable = false)
     private String endLocation;
-
-    @Column(nullable = false)
     private double distanceInKm;
-
-    @Column(nullable = false)
     private double basePrice;
 
     public String getId() {
