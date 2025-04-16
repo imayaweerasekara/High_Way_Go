@@ -1,35 +1,17 @@
-package lk.ijse.highwaygo_backend.entity;
+package lk.ijse.highwaygo_backend.dto;
 
-import jakarta.persistence.*;
 import lk.ijse.highwaygo_backend.Enum.SeatType;
 import lombok.*;
 
-@Entity
-@Table(name = "seats")
-@Getter
-@Setter
-@ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class Seat {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class SeatDTO {
     private String id;
-
-    @ManyToOne
-    @JoinColumn(name = "bus_id", nullable = false)
-    private Bus bus;
-
-    @Column(nullable = false)
-    private String seatNumber; // Example: A1, A2, B1, B2
-
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private SeatType seatType; // Example: REGULAR, WINDOW, VIP
-
-    @Column(nullable = false)
-    private boolean isBooked = false;
+    private String busNumber;
+    private String seatNumber;
+    private SeatType seatType;
+    private boolean isBooked;
 
     public String getId() {
         return id;
@@ -39,12 +21,12 @@ public class Seat {
         this.id = id;
     }
 
-    public Bus getBus() {
-        return bus;
+    public String getBusNumber() {
+        return busNumber;
     }
 
-    public void setBus(Bus bus) {
-        this.bus = bus;
+    public void setBusNumber(String busNumber) {
+        this.busNumber = busNumber;
     }
 
     public String getSeatNumber() {

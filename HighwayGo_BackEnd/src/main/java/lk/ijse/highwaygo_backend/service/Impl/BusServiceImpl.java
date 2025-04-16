@@ -29,11 +29,9 @@ public class BusServiceImpl implements BusService {
         if (busRepo.existsById(Integer.valueOf(busDTO.getBusNumber()))) {
             throw new AlreadyExistsException("Bus with number " + busDTO.getBusNumber() + " already exists.");
         }
-        System.out.println("Bus Number1: " + busDTO.getBusNumber());
 
         // Convert DTO to entity
         Bus bus = modelMapper.map(busDTO, Bus.class);
-        System.out.println("Bus Number2: " + busDTO.getBusNumber());
 
 
         // Save the bus
