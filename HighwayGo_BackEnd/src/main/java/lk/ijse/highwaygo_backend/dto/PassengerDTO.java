@@ -1,7 +1,7 @@
 package lk.ijse.highwaygo_backend.dto;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.*;
 import lombok.NoArgsConstructor;
 
 

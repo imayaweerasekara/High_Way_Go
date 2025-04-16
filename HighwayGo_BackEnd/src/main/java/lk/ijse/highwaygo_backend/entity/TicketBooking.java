@@ -1,48 +1,48 @@
 package lk.ijse.highwaygo_backend.entity;
 
 import jakarta.persistence.*;
-import lk.ijse.highwaygo_backend.Enum.BookingStatus;
 import lombok.*;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 
 @Entity
-@Table(name = "ticketBooking")
+@Table(name = "ticket_bookings")
 @Getter
 @Setter
-@ToString
 @NoArgsConstructor
 @AllArgsConstructor
-
+@ToString
 public class TicketBooking {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String id; // Assuming ID is String, can be changed to Long if needed
 
-    @ManyToOne
-    @JoinColumn(name = "passenger_id", nullable = false)
-    private Passenger passenger;
+    @Column(name = "passenger_id", nullable = false)
+    private String passengerId; // Passenger ID (String)
 
-    @ManyToOne
-    @JoinColumn(name = "bus_id", nullable = false)
-    private Bus bus;
+    @Column(name = "route_id", nullable = false)
+    private String routeId; // Route ID (String)
 
-    @ManyToOne
-    @JoinColumn(name = "route_id", nullable = false)
-    private Route route;
+    @Column(name = "seat_id", nullable = false)
+    private String seatId; // Seat ID (String)
 
-    @ManyToOne
-    @JoinColumn(name = "seat_id", nullable = false)
-    private Seat seat;
+    @Column(name = "booking_time", nullable = false)
+    private Date bookingTime;
 
-    @Column(nullable = false)
-    private LocalDateTime bookingTime;
+    @Column(name = "total_price", nullable = false)
+    private double totalPrice;
 
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private BookingStatus status; // CONFIRMED, CANCELED, PENDING
+    @Column(name = "payment_status", nullable = false)
+    private String paymentStatus; // Example: "PAID", "PENDING"
 
-    @OneToOne(mappedBy = "booking", cascade = CascadeType.ALL)
-    private Payment payment;
+    @Column(name = "is_confirmed", nullable = false)
+    private boolean isConfirmed;
 
+    // Getters and setters for all the fields are automatically generated due to @Getter and @Setter annotations
+
+
+    public void setPasseng(String passengerId) {
+        this.passengerId = passengerId;
+    }
 }
