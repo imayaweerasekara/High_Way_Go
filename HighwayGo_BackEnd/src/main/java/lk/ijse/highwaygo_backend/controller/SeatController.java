@@ -1,6 +1,7 @@
 package lk.ijse.highwaygo_backend.controller;
 
 import lk.ijse.highwaygo_backend.dto.SeatDTO;
+import lk.ijse.highwaygo_backend.entity.Seat;
 import lk.ijse.highwaygo_backend.exception.NotFoundException;
 import lk.ijse.highwaygo_backend.service.SeatService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,7 @@ public class SeatController {
     @PostMapping("/save")
     public ResponseEntity<?> saveSeat(@RequestBody SeatDTO seatDTO) {
         try {
-            SeatDTO savedSeat = seatService.save(seatDTO);
+            Seat savedSeat = seatService.save(seatDTO);
             return new ResponseEntity<>(savedSeat, HttpStatus.CREATED);
         } catch (NotFoundException e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
@@ -31,7 +32,7 @@ public class SeatController {
     @PutMapping("/update/{seatId}")
     public ResponseEntity<?> updateSeat(@PathVariable String seatId, @RequestBody SeatDTO seatDTO) {
         try {
-            SeatDTO updatedSeat = seatService.update(seatId, seatDTO);
+            Seat updatedSeat = seatService.update(seatId, seatDTO);
             return ResponseEntity.ok(updatedSeat);
         } catch (NotFoundException e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);

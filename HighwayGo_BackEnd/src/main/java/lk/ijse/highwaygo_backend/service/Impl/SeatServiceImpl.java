@@ -28,18 +28,18 @@ public class SeatServiceImpl implements SeatService {
     private ModelMapper modelMapper;
 
     @Override
-    public SeatDTO save(SeatDTO seatDTO) {
+    public Seat save(SeatDTO seatDTO) {
         Bus bus = busRepo.findById(Integer.valueOf(seatDTO.getBusNumber()))
                 .orElseThrow(() -> new NotFoundException("Bus not found with number: " + seatDTO.getBusNumber()));
 
         Seat seat = modelMapper.map(seatDTO, Seat.class);
         seat.setBus(bus);
         Seat savedSeat = seatRepo.save(seat);
-        return modelMapper.map(savedSeat, SeatDTO.class);
+        return modelMapper.map(savedSeat, Seat.class);
     }
 
     @Override
-    public SeatDTO update(String seatId, SeatDTO seatDTO) {
+    public Seat update(String seatId, SeatDTO seatDTO) {
         Seat existingSeat = seatRepo.findById(seatId)
                 .orElseThrow(() -> new EntityNotFoundException("Seat not found with ID: " + seatId));
 
@@ -54,7 +54,7 @@ public class SeatServiceImpl implements SeatService {
         existingSeat.setBooked(seatDTO.isBooked());
 
         Seat updatedSeat = seatRepo.save(existingSeat);
-        return modelMapper.map(updatedSeat, SeatDTO.class);
+        return modelMapper.map(updatedSeat, Seat.class);
     }
 
     @Override
